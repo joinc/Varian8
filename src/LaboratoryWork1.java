@@ -23,7 +23,7 @@ public class LaboratoryWork1 {
                             flag = false;
                         }
                     }
-                    if (flag) {
+                    if ((flag) && (count < str_split.length)) {
                         overlap[count] = i;
                         count++;
                         overlap[count] = j;
