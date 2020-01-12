@@ -1,6 +1,7 @@
 /*
 * В тексте найти все пары слов, из которых одно является обращением другого
 */
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class LaboratoryWork1 {
@@ -10,35 +11,24 @@ public class LaboratoryWork1 {
         Scanner scanner = new Scanner(System.in);
         String str_in = scanner.nextLine().toLowerCase();
         String[] str_split = str_in.split(" ");
-        int[] overlap = new int[str_split.length];
-        int count = 0;
-
+        ArrayList<Integer> overlap = new ArrayList<>();
         for (int i = 0; i < str_split.length; i++ ) {
             String str_invert = new StringBuffer(str_split[i]).reverse().toString();
             for (int j = 0; j < str_split.length; j++ ) {
                 if (i != j && str_split[j].equals(str_invert)) {
-                    Boolean flag = true;
-                    for (int c = 0; c < count; c++) {
-                        if (i == overlap[c]) {
-                            flag = false;
-                        }
-                    }
-                    if ((flag) && (count < str_split.length)) {
-                        overlap[count] = i;
-                        count++;
-                        overlap[count] = j;
-                        count++;
-                    }
+                    overlap.add(i);
+                    overlap.add(j);
                 }
             }
         }
-        if (count > 0) {
-            System.out.println("Найдены совпадения:");
-            for (int c = 0; c < count; c+=2) {
-                System.out.println(str_split[overlap[c]] + "[" + overlap[c] + "]" + " и " + str_split[overlap[c + 1]]+ "[" + overlap[c + 1] + "]");
-            }
-        } else {
+        if (overlap.isEmpty()) {
             System.out.println("Не найдено совпадений!");
+        } else {
+            System.out.println("Найдены совпадения:");
+            for (int c = 0; c < overlap.size(); c+=2) {
+                System.out.println(str_split[overlap.get(c)] + "[" + overlap.get(c) + "]" + " и "
+                        + str_split[overlap.get(c + 1)]+ "[" + overlap.get(c + 1) + "]");
+            }
         }
     }
 }
