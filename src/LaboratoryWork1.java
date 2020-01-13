@@ -14,8 +14,8 @@ public class LaboratoryWork1 {
         ArrayList<Integer> overlap = new ArrayList<>();
         for (int i = 0; i < str_split.length; i++ ) {
             String str_invert = new StringBuffer(str_split[i]).reverse().toString();
-            for (int j = 0; j < str_split.length; j++ ) {
-                if (i != j && str_split[j].equals(str_invert)) {
+            for (int j = i + 1; j < str_split.length; j++ ) {
+                if (str_split[j].equals(str_invert)) {
                     overlap.add(i);
                     overlap.add(j);
                 }
